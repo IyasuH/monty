@@ -24,7 +24,7 @@ for (i = 0; value[i] != '\0'; i++)
 /* to check if val is not integer*/
 if (!(isdigit(value[i])))
 {
-printf("L%u: usage: push integer\n", line_number);
+fprintf(stderr, "L%u: usage: push integer\n", line_number);
 free_dlistint(args.stack);
 exit(EXIT_FAILURE);
 }
@@ -51,12 +51,12 @@ new->next = (*stack);
 
 void pint(stack_t **stack, unsigned int line_number)
 {
-  if(!*stack)
-    {
-      printf("L%u: can't pint, stack empty\n", line_number);
-      exit(EXIT_FAILURE);
-    }
-  printf("%d\n", (*stack)->n);
+if (!*stack)
+{
+printf("L%u: can't pint, stack empty\n", line_number);
+exit(EXIT_FAILURE);
+}
+printf("%d\n", (*stack)->n);
 }
 
 /**
