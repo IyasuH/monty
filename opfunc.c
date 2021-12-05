@@ -1,5 +1,4 @@
 #include "monty.h"
-
 /**
  * push - pushes an element to the top of stack
  * @stack: doubly linked lists
@@ -17,13 +16,12 @@ val = 0;
 if (new == NULL)
 {
 printf("Erorr: malloc failed\n");
-free_dlistint(args.stack);
 exit(EXIT_FAILURE);
 }
 for (i = 0; value[i] != '\0'; i++)
 {
 /* to check if val is not integer*/
-if (isdigit(value[i]) == 0)
+if (!(isdigit(value[i])))
 {
 printf("L%d: usage: push integer\n", line_number);
 free_dlistint(args.stack);
@@ -42,6 +40,22 @@ else
 new->next = (*stack);
 (*stack) = new;
 }
+}
+
+/**
+ * pint - prints the value at the top of stack followed by newline
+ * @stack: doubly linked list
+ * @line_number: the number line
+ */
+
+void pint(stack_t **stack, unsigned int line_number)
+{
+  if(!*stack)
+    {
+      printf("L%u: can't pint, stack empty\n", line_number);
+      exit(EXIT_FAILURE);
+    }
+  printf("%d\n", (*stack)->n);
 }
 
 /**

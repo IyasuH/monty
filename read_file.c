@@ -64,7 +64,7 @@ func_call(op);
 void func_call(char *op)
 {
 int i = 0;
-instruction_t ins[] = {{"push", push}, {"pall", pall}};
+ instruction_t ins[] = {{"push", push}, {"pall", pall}, {"pint", pint}};
 while (ins[i].opcode && op)
 {
 if (strcmp(op, ins[1].opcode) == 0)
