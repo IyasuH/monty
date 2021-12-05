@@ -1,4 +1,5 @@
 #include "monty.h"
+
 /**
  * push - pushes an element to the top of stack
  * @stack: doubly linked lists
@@ -23,7 +24,7 @@ for (i = 0; value[i] != '\0'; i++)
 /* to check if val is not integer*/
 if (!(isdigit(value[i])))
 {
-printf("L%d: usage: push integer\n", line_number);
+printf("L%u: usage: push integer\n", line_number);
 free_dlistint(args.stack);
 exit(EXIT_FAILURE);
 }

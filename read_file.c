@@ -23,7 +23,6 @@ printf("Error: can't open file %s\n", file_name);
 exit(EXIT_FAILURE);
 }
 read_file(fptr);
-fclose(fptr);
 }
 
 /**
@@ -35,10 +34,10 @@ fclose(fptr);
 
 void read_file(FILE *fptr)
 {
-char *buff = NULL;
-size_t size = 256;
-for (; getline(&buff, &size, fptr) != '\0';)
+char buff[256];
+while (fgets(buff, sizeof(buff), fptr) != NULL)
 tokenizer(buff);
+fclose(fptr);
 }
 
 /**
@@ -64,7 +63,7 @@ func_call(op);
 void func_call(char *op)
 {
 int i = 0;
- instruction_t ins[] = {{"push", push}, {"pall", pall}, {"pint", pint}};
+instruction_t ins[] = {{"push", push}, {"pall", pall}, {"pint", pint}};
 while (ins[i].opcode && op)
 {
 if (strcmp(op, ins[1].opcode) == 0)
