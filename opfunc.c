@@ -51,9 +51,9 @@ new->next = (*stack);
 
 void pint(stack_t **stack, unsigned int line_number)
 {
-if (!*stack)
+if (*stack == NULL)
 {
-printf("L%u: can't pint, stack empty\n", line_number);
+fprintf(stderr, "L%u: can't pint, stack empty\n", line_number);
 exit(EXIT_FAILURE);
 }
 printf("%d\n", (*stack)->n);
@@ -79,4 +79,44 @@ while (stack != NULL)
 printf("%d\n", (*stack)->n);
 (*stack) = (*stack)->next;
 }
+}
+
+/**
+ * pop - removes the top element of the stack.
+ * @stack: doubly linked lists
+ * @line_number: the number of line
+ * Return: nothing
+ */
+
+void pop(stack_t **stack, unsigned int line_number)
+{
+struct stack_s *current;
+current = (*stack);
+if (current == NULL)
+{
+fprintf(stderr, "L%u: can't pop an empty stack\n", line_number);
+exit(EXIT_FAILURE);
+}
+current->prev->next = current->next;
+current->next->prev = current->prev;
+}
+
+/**
+ * swap - swap the top two elements of the stack
+ * @stack: doubly linked list
+ * @line_number: the number of line
+ *
+ * Return: Nothing
+ */
+void swap(stack_t **stack, unsigned int line_number)
+{
+int swap;
+if (*stack == NULL || (*stack)->next == NULL)
+{
+fprintf(stderr, "L%u: can't swap, stack too short\n", line_number);
+exit(EXIT_FAILURE);
+}
+swap = (*stack)->n;
+(*stack)->n = (*stack)->next->n;
+(*stack)->next->n = swap;
 }
