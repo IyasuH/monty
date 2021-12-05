@@ -22,9 +22,9 @@
 
 typedef struct stack_s
 {
-        int n;
-        struct stack_s *prev;
-        struct stack_s *next;
+int n;
+struct stack_s *prev;
+struct stack_s *next;
 } stack_t;
 
 /**
@@ -38,25 +38,22 @@ typedef struct stack_s
 
 typedef struct instruction_s
 {
-        char *opcode;
-        void (*f)(stack_t **stack, unsigned int line_number);
+char *opcode;
+void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
 /**
- * struct arguments - values for global variable
- * @counter: to count lines
+ * struct universal_s - values for global variable
+ * @count: to count lines
  * @stack: dobly linked list
  */
 
 typedef struct universal_s
 {
-  int count;
-  stack_t *stack;
+int count;
+stack_t *stack;
 } universal_t;
 
-
-/*global variable*/
-extern universal_t args;
 
 /*from the main file*/
 void free_dlistint(stack_t *head);
@@ -70,5 +67,8 @@ void func_call(char *op);
 /*from opfunc file */
 void push(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
+
+/*global variable*/
+extern universal_t args;
 
 #endif
